@@ -7,13 +7,39 @@ def izveidot_db():
     conn = sqlite3.connect("datubaze.db")
     cursor = conn.cursor()
     cursor.execute("""
-    CREATE TABLE "users"(
-    "id"  INTEGER,
-    "username" TEXT,
-    "password" TEXT,
+    CREATE TABLE IF NOT EXISTS "users"(
+    "id"     INTEGER,
+    "username"  TEXT,
+    "password"  TEXT,
     PRIMARY KEY("id")
     )
     """)
     conn.commit()
     conn.close()
 izveidot_db()
+
+@app.route("/")
+def home():
+    return render_template("home.html")
+
+@app.route("/registreties", methods=["GET", "POST"])
+def register():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
+        #print(username)
+        #print(password) 
+  
+        conn = sqlite3.connect("datubaze.db")
+        cursor = conn.cursor()
+        cursor.execute("""INSERT INTO users (username, password) VALUES (?,?) """,(username, password))
+        conn.commit
+        conn.close
+
+        return redirect("/login")
+    
+    return render_template("register.html")
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
