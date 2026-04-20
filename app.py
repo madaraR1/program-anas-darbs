@@ -40,6 +40,8 @@ def register():
     
     return render_template("register.html")
 
+#vajag pieslegties route!!!
+
 
 if __name__ == "__main__":
     app.run(debug=True)
