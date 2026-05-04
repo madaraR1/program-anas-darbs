@@ -40,8 +40,24 @@ def register():
     
     return render_template("register.html")
 
-#vajag pieslegties route!!!
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    if request.method == "POST":
+        username = request.form["username"]
+        password = request.form["password"]
 
+        conn = sqlite3.connect("datubaze.db")
+        cursor = conn.cursor()
+        cursor.execute("""SELECT * FROM users WHERE username=? AND password=?""",(username, password))
+        user = cursor.fetchone()
+        conn.close()
+
+        if user:
+            return redirect("/Sveicināti!")
+        else:
+            return "Nepareizs lietotājvārds vai parole"
+    
+    return render_template("login.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
