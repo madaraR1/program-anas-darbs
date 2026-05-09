@@ -72,7 +72,7 @@ def filmas_db():
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         nosaukums TEXT,
         zanrs TEXT,
-        gads INTEGER
+        gads INTEGER,
         user_id INTEGER
     )
     """)
