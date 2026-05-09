@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Filmas</title>
+</head>
+<body>
+    <h1>Filmas</h1>
+    <form method="POST">
+        <input type="text" name="nosaukums" placeholder="Nosaukums" required>
+        <input type="text" name="zanrs" placeholder="Žanrs" required>
+        <input type="number" name="gads" placeholder="Gads" required>
+        <button type="submit">Pievienot filmu</button>
+    </form>
+    <br>
+
+    {% if filmas %}
+
+    <table border="1">
+        <tr>
+            <th>ID</th>
+            <th>Nosaukums</th>
+            <th>Žanrs</th>
+            <th>Gads</th>
+        </tr>
+        {% for filma in filmas %}
+        <tr>
+            <td>{{ filma[0] }}</td>
+            <td>{{ filma[1] }}</td>
+            <td>{{ filma[2] }}</td>
+            <td>{{ filma[3] }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+        <p>Nav pievienotu filmu.</p>
+    {% endif %}
+</body>
+</html>
