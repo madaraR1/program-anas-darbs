@@ -111,7 +111,10 @@ def filmas():
 
         conn.commit()
 
-    cursor.execute("SELECT * FROM filmas")
+    cursor.execute("""
+    SELECT * FROM filmas
+    WHERE user_id=?
+    """, (user_id,))
 
     filmas = cursor.fetchall()
     conn.commit()
