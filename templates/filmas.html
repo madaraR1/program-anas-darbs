@@ -1,39 +1,80 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <style>
+        body{
+            background-color: rgb(88, 8, 8);
+
+        }
+
+        div{
+            background-color: rgb(255, 241, 215);
+            width: 600px;
+            padding: 20px;
+            margin: 100px auto;
+            text-align: center;
+            height: 250px;
+        }
+        h1{
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 100px;
+        }
+        table, th, td{
+            border: 3px solid black;
+            border-collapse: collapse;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 30px;
+            background-color: rgb(255, 241, 215);
+            width : 1310px;
+        }
+        table{
+            text-align: center;
+        }
+        form{
+            text-align: center;
+            font-family: 'Times New Roman', Times, serif;
+            font-size: 30px;
+        }
+    </style>
     <title>Filmas</title>
 </head>
 <body>
+  
+    <div>
     <h1>Filmas</h1>
+    </div>
     <form method="POST">
-        <input type="text" name="nosaukums" placeholder="Nosaukums" required>
-        <input type="text" name="zanrs" placeholder="Žanrs" required>
-        <input type="number" name="gads" placeholder="Gads" required>
-        <button type="submit">Pievienot filmu</button>
-    </form>
-    <br>
+            <input type="text" name="nosaukums" placeholder="Nosaukums" required>
+            <input type="text" name="zanrs" placeholder="Žanrs" required>
+            <input type="number" name="gads" placeholder="Gads" required>
+            <input type="text" name="atsauksme" placeholder="Atsauksme" required>
+            <button type="submit">Pievienot filmu</button>
+        </form>
+        <br>
 
     {% if filmas %}
 
-    <table border="1">
-        <tr>
-            <th>ID</th>
-            <th>Nosaukums</th>
-            <th>Žanrs</th>
-            <th>Gads</th>
-            
-        </tr>
-        {% for filma in filmas %}
-        <tr>
-            <td>{{ filma[0] }}</td>
-            <td>{{ filma[1] }}</td>
-            <td>{{ filma[2] }}</td>
-            <td>{{ filma[3] }}</td>
-        </tr>
-        {% endfor %}
-    </table>
-    {% else %}
-        <p>Nav pievienotu filmu.</p>
-    {% endif %}
+        <table border="1">
+            <tr>
+                <th>ID</th>
+                <th>Nosaukums</th>
+                <th>Žanrs</th>
+                <th>Gads</th>
+                <th>Atsauksme</th>
+            </tr>
+            {% for filma in filmas %}
+            <tr>
+                <td>{{ filma[0] }}</td>
+                <td>{{ filma[1] }}</td>
+                <td>{{ filma[2] }}</td>
+                <td>{{ filma[3] }}</td>
+                <td>{{ filma[4] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+            <p>Nav pievienotu filmu.</p>
+        {% endif %}
 </body>
 </html>

@@ -58,7 +58,7 @@ def login():
             session["username"] = user[1]
             return redirect("/filmas")
         else:
-            return "Nepareizs lietotājvārds vai parole"
+            return redirect("/")
     
     return render_template("login.html")
 
@@ -73,6 +73,7 @@ def filmas_db():
         nosaukums TEXT,
         zanrs TEXT,
         gads INTEGER,
+        atsauksme TEXT,
         user_id INTEGER
     )
     """)
@@ -101,12 +102,13 @@ def filmas():
         nosaukums = request.form["nosaukums"]
         zanrs = request.form["zanrs"]
         gads = request.form["gads"]
+        atsauksme = request.form["atsauksme"]
 
         cursor.execute("""
         INSERT INTO filmas
-        (nosaukums, zanrs, gads, user_id)
-        VALUES (?, ?, ?, ?)
-        """, (nosaukums, zanrs, gads, user_id))
+        (nosaukums, zanrs, gads, atsauksme, user_id)
+        VALUES (?, ?, ?, ?, ?)
+        """, (nosaukums, zanrs, gads, atsauksme, user_id))
 
 
         conn.commit()
